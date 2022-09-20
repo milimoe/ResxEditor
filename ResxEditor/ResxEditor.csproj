@@ -7,7 +7,7 @@
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
-    <ApplicationIcon>logo.ico</ApplicationIcon>
+    <ApplicationIcon>Resource\logo.ico</ApplicationIcon>
     <Authors>Milimoe</Authors>
     <Company>Milimoe</Company>
     <Title>ResxEditor</Title>
@@ -24,7 +24,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="logo.ico" />
+    <Content Include="Resource\logo.ico" />
   </ItemGroup>
 
 </Project>

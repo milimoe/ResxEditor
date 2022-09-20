@@ -12,6 +12,8 @@ namespace ResxEditor
 {
     public partial class Setting : Form
     {
+        public string ConfirmSuccessfully = "";
+
         public Setting()
         {
             InitializeComponent();
@@ -89,7 +91,7 @@ namespace ResxEditor
             ResxEditor.WriteINI("Resource", "English", ResxEditor.ResxEng);
             ResxEditor.WriteINI("Resource", "SChinese", ResxEditor.ResxSC);
             ResxEditor.WriteINI("Resource", "TChinese", ResxEditor.ResxTC);
-            MessageBox.Show("写入完成！");
+            MessageBox.Show(ConfirmSuccessfully);
             this.Hide();
         }
     }

@@ -61,11 +61,35 @@
   <data name="editor.main.add" xml:space="preserve">
     <value>Add New</value>
   </data>
+  <data name="editor.main.addfailed" xml:space="preserve">
+    <value>Add Failed!</value>
+  </data>
+  <data name="editor.main.addsuccessfully" xml:space="preserve">
+    <value>Add Successfully!</value>
+  </data>
+  <data name="editor.main.checkreload" xml:space="preserve">
+    <value>Unsaved data will be lost. Do you want to reload?</value>
+  </data>
   <data name="editor.main.clear" xml:space="preserve">
     <value>Clear Grid</value>
   </data>
+  <data name="editor.main.delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="editor.main.deleteconfirm" xml:space="preserve">
+    <value>Are you sure to delete this row?</value>
+  </data>
+  <data name="editor.main.deletefailed" xml:space="preserve">
+    <value>Delete Failed!</value>
+  </data>
+  <data name="editor.main.deletesuccessfully" xml:space="preserve">
+    <value>Delete Successfully!</value>
+  </data>
   <data name="editor.main.english" xml:space="preserve">
     <value>English</value>
+  </data>
+  <data name="editor.main.exit" xml:space="preserve">
+    <value>The changed data has not been saved, do you want to exit?</value>
   </data>
   <data name="editor.main.key" xml:space="preserve">
     <value>Key</value>
@@ -82,14 +106,32 @@
   <data name="editor.main.milimoe" xml:space="preserve">
     <value>milimoe</value>
   </data>
+  <data name="editor.main.nochange" xml:space="preserve">
+    <value>No change.</value>
+  </data>
   <data name="editor.main.reload" xml:space="preserve">
     <value>Reload All</value>
   </data>
   <data name="editor.main.rename" xml:space="preserve">
     <value>Rename</value>
   </data>
+  <data name="editor.main.renamefailed" xml:space="preserve">
+    <value>Rename Failed!</value>
+  </data>
+  <data name="editor.main.renamesuccessfully" xml:space="preserve">
+    <value>Rename Successfully!</value>
+  </data>
+  <data name="editor.main.renamesuccessfully.same" xml:space="preserve">
+    <value>Exist Same Key, Rename the Key Successfully!</value>
+  </data>
   <data name="editor.main.save" xml:space="preserve">
     <value>Save All</value>
+  </data>
+  <data name="editor.main.savefailed" xml:space="preserve">
+    <value>Save Failed!</value>
+  </data>
+  <data name="editor.main.savesuccessfully" xml:space="preserve">
+    <value>Save Successfully!</value>
   </data>
   <data name="editor.main.schinese" xml:space="preserve">
     <value>Simplified Chinese</value>
@@ -103,6 +145,9 @@
   <data name="editor.main.setting.confirm" xml:space="preserve">
     <value>Confirm</value>
   </data>
+  <data name="editor.main.setting.confirmsuccessfully" xml:space="preserve">
+    <value>Successfully!</value>
+  </data>
   <data name="editor.main.setting.l" xml:space="preserve">
     <value>L</value>
   </data>
@@ -111,6 +156,9 @@
   </data>
   <data name="editor.main.tchinese" xml:space="preserve">
     <value>Traditional Chinese</value>
+  </data>
+  <data name="editor.main.tip" xml:space="preserve">
+    <value>Tip Message</value>
   </data>
   <data name="editor.main.title" xml:space="preserve">
     <value>Resource Editor</value>

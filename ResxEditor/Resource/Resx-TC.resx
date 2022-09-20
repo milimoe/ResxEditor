@@ -61,11 +61,35 @@
   <data name="editor.main.add" xml:space="preserve">
     <value>添加新行</value>
   </data>
+  <data name="editor.main.addfailed" xml:space="preserve">
+    <value>添加失敗！</value>
+  </data>
+  <data name="editor.main.addsuccessfully" xml:space="preserve">
+    <value>添加成功！</value>
+  </data>
+  <data name="editor.main.checkreload" xml:space="preserve">
+    <value>未保存的數據將丟失，是否重新加載？</value>
+  </data>
   <data name="editor.main.clear" xml:space="preserve">
     <value>清空表格</value>
   </data>
+  <data name="editor.main.delete" xml:space="preserve">
+    <value>刪除</value>
+  </data>
+  <data name="editor.main.deleteconfirm" xml:space="preserve">
+    <value>確定刪除該行？</value>
+  </data>
+  <data name="editor.main.deletefailed" xml:space="preserve">
+    <value>刪除失敗！</value>
+  </data>
+  <data name="editor.main.deletesuccessfully" xml:space="preserve">
+    <value>刪除成功！</value>
+  </data>
   <data name="editor.main.english" xml:space="preserve">
     <value>英語</value>
+  </data>
+  <data name="editor.main.exit" xml:space="preserve">
+    <value>有被更改的數據尚未保存，是否退出？</value>
   </data>
   <data name="editor.main.key" xml:space="preserve">
     <value>鍵</value>
@@ -82,14 +106,32 @@
   <data name="editor.main.milimoe" xml:space="preserve">
     <value>米粒的糖果屋</value>
   </data>
+  <data name="editor.main.nochange" xml:space="preserve">
+    <value>未修改數據。</value>
+  </data>
   <data name="editor.main.reload" xml:space="preserve">
     <value>重新加載</value>
   </data>
   <data name="editor.main.rename" xml:space="preserve">
     <value>重命名</value>
   </data>
+  <data name="editor.main.renamefailed" xml:space="preserve">
+    <value>重命名失敗！</value>
+  </data>
+  <data name="editor.main.renamesuccessfully" xml:space="preserve">
+    <value>重命名成功！</value>
+  </data>
+  <data name="editor.main.renamesuccessfully.same" xml:space="preserve">
+    <value>已存在相同Key，已重命名那一行的數據。</value>
+  </data>
   <data name="editor.main.save" xml:space="preserve">
     <value>全部保存</value>
+  </data>
+  <data name="editor.main.savefailed" xml:space="preserve">
+    <value>保存失敗！</value>
+  </data>
+  <data name="editor.main.savesuccessfully" xml:space="preserve">
+    <value>保存成功！</value>
   </data>
   <data name="editor.main.schinese" xml:space="preserve">
     <value>簡體中文</value>
@@ -103,6 +145,9 @@
   <data name="editor.main.setting.confirm" xml:space="preserve">
     <value>確認</value>
   </data>
+  <data name="editor.main.setting.confirmsuccessfully" xml:space="preserve">
+    <value>寫入完成！</value>
+  </data>
   <data name="editor.main.setting.l" xml:space="preserve">
     <value>讀</value>
   </data>
@@ -111,6 +156,9 @@
   </data>
   <data name="editor.main.tchinese" xml:space="preserve">
     <value>繁體中文</value>
+  </data>
+  <data name="editor.main.tip" xml:space="preserve">
+    <value>提示</value>
   </data>
   <data name="editor.main.title" xml:space="preserve">
     <value>Resx文件編輯器</value>

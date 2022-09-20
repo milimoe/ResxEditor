@@ -78,6 +78,7 @@ namespace ResxEditor
                 }
                 else
                 {
+                    ChangeLanguage.Sorted = false;
                     ChangeLanguage.Items.Add(EngString);
                     ChangeLanguage.Items.Add(SCString);
                     ChangeLanguage.Items.Add(TCString);
@@ -85,6 +86,7 @@ namespace ResxEditor
                 ChangeLanguage.SelectedItem = ChangeLanguage.Items[NowLanguage];
                 Text = GetString("editor.main.title");
                 Reload.Text = GetString("editor.main.reload");
+                Delete.Text = GetString("editor.main.delete");
                 Save.Text = GetString("editor.main.save");
                 Clear.Text = GetString("editor.main.clear");
                 Setting.Text = GetString("editor.main.setting");
@@ -94,6 +96,14 @@ namespace ResxEditor
                 LabelTC.Text = GetString("editor.main.label.tchinese");
                 Add.Text = GetString("editor.main.add");
                 Rename.Text = GetString("editor.main.rename");
+                string str = NowLanguage switch
+                {
+                    2 => "tc",
+                    1 => "sc",
+                    0 => "en",
+                    _ => "en"
+                };
+                WriteINI("Config", "Language", str);
             }
         }
 
@@ -117,6 +127,10 @@ namespace ResxEditor
                 SettingForm.ClearTC.Text = GetString("editor.main.setting.c");
                 SettingForm.Tips.Text = GetString("editor.main.setting.tip");
                 SettingForm.Confirm.Text = GetString("editor.main.setting.confirm");
+                SettingForm.LabelEng.Text =  GetString("editor.main.english");
+                SettingForm.LabelSC.Text = GetString("editor.main.schinese");
+                SettingForm.LabelTC.Text = GetString("editor.main.tchinese");
+                SettingForm.ConfirmSuccessfully = GetString("editor.main.setting.confirmsuccessfully");
             };
             Setting.Invoke(action);
         }
@@ -167,9 +181,14 @@ namespace ResxEditor
                 ResxEng = ReadINI("Resource", "English");
                 ResxSC = ReadINI("Resource", "SChinese");
                 ResxTC = ReadINI("Resource", "TChinese");
+                string str = ReadINI("Config", "Language");
+                if (str.Equals("sc")) NowLanguage = 1;
+                else if (str.Equals("tc")) NowLanguage = 2;
+                else NowLanguage = 0;
             }
             else
             {
+                WriteINI("Config", "Language", "en");
                 WriteINI("Resource", "SChinese", "");
                 WriteINI("Resource", "TChinese", "");
                 WriteINI("Resource", "English", "");
@@ -318,14 +337,14 @@ namespace ResxEditor
             this.GridView.DataSource = this.DataTable;
             this.LabelCount.Text = Convert.ToString(DataTable.Rows.Count);
             IsEdited = false;
-            this.Text = "Resource Editor";
+            this.Text = GetString("editor.main.title");
         }
 
         private void CellChanged()
         {
             // 修改更改状态
             IsEdited = true;
-            this.Text = "* Resource Editor";
+            this.Text = "* " + GetString("editor.main.title");
         }
 
         private void ReloadAll()
@@ -333,8 +352,9 @@ namespace ResxEditor
             // 重新加载表格
             if (IsEdited)
             {
-                if (MessageBox.Show("未保存的数据将丢失，是否重新加载？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show(GetString("editor.main.checkreload"), GetString("editor.main.tip"), MessageBoxButtons.YesNo) == DialogResult.Yes)
                     LoadGridData();
+                CellChanged();
             }
             else LoadGridData();
         }
@@ -344,8 +364,9 @@ namespace ResxEditor
             // 清空表格
             if (IsEdited)
             {
-                if (MessageBox.Show("未保存的数据将丢失，是否清空表格？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show(GetString("editor.main.checkreload"), GetString("editor.main.tip"), MessageBoxButtons.YesNo) == DialogResult.Yes)
                     ClearGird();
+                CellChanged();
             }
             else ClearGird();
         }
@@ -774,7 +795,7 @@ namespace ResxEditor
             }
             foreach (DataGridViewRow Row in GridView.Rows)
             {
-                String[] temp = Row.Cells[0].Value.ToString().Split('.');
+                string[] temp = Row.Cells[0].Value.ToString().Split('.');
                 for (int i = pos; i < temp.Length && i < 7; i++)
                 {
                     if (temp[i].Trim() != "" && !Lists[i].Contains(temp[i]))
@@ -814,9 +835,10 @@ namespace ResxEditor
             // 当数据被更改后，未保存不能直接退出
             if (IsEdited)
             {
-                if (MessageBox.Show("有被更改的数据尚未保存，是否退出？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show(GetString("editor.main.exit"), GetString("editor.main.tip"), MessageBoxButtons.YesNo) == DialogResult.Yes)
                     e.Cancel = false;
                 else e.Cancel = true;
+                CellChanged();
             }
         }
 
@@ -855,8 +877,9 @@ namespace ResxEditor
             {
                 if (IsEdited)
                 {
-                    if (MessageBox.Show("有被更改的数据尚未保存，是否退出？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    if (MessageBox.Show(GetString("editor.main.exit"), GetString("editor.main.tip"), MessageBoxButtons.YesNo) == DialogResult.Yes)
                         this.Dispose();
+                    CellChanged();
                 }
             }
         }
@@ -928,17 +951,17 @@ namespace ResxEditor
                 if (SaveAll())
                 {
                     IsEdited = false;
-                    this.Text = "Resource Editor";
-                    MessageBox.Show("保存成功", "提示", MessageBoxButtons.OK);
+                    this.Text = GetString("editor.main.title");
+                    MessageBox.Show(GetString("editor.main.savesuccessfully"), GetString("editor.main.tip"), MessageBoxButtons.OK);
                 }
                 else
                 {
-                    MessageBox.Show("保存失败", "提示", MessageBoxButtons.OK);
+                    MessageBox.Show(GetString("editor.main.savefailed"), GetString("editor.main.tip"), MessageBoxButtons.OK);
                 }
             }
             else
             {
-                MessageBox.Show("未修改数据", "提示", MessageBoxButtons.OK);
+                MessageBox.Show(GetString("editor.main.nochange"), GetString("editor.main.tip"), MessageBoxButtons.OK);
             }
         }
 
@@ -952,16 +975,16 @@ namespace ResxEditor
             if (RenameRow() == 1)
             {
                 CellChanged();
-                MessageBox.Show("重命名成功", "提示", MessageBoxButtons.OK);
+                MessageBox.Show(GetString("editor.main.renamesuccessfully"), GetString("editor.main.tip"), MessageBoxButtons.OK);
             }
             else if (RenameRow() == 2)
             {
                 CellChanged();
-                MessageBox.Show("已存在相同Key，已重命名那一行的数据", "提示", MessageBoxButtons.OK);
+                MessageBox.Show(GetString("editor.main.renamesuccessfully.same"), GetString("editor.main.tip"), MessageBoxButtons.OK);
             }
             else
             {
-                MessageBox.Show("重命名失败", "提示", MessageBoxButtons.OK);
+                MessageBox.Show(GetString("editor.main.renamefailed"), GetString("editor.main.tip"), MessageBoxButtons.OK);
             }
             if (GridView.Rows.Count > 0)
             {
@@ -977,16 +1000,16 @@ namespace ResxEditor
 
         private void Delete_Click()
         {
-            if (MessageBox.Show("确定删除该行？", "提示", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show(GetString("editor.main.deleteconfirm"), GetString("editor.main.tip"), MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 if (DeleteRow() == 1)
                 {
                     CellChanged();
-                    MessageBox.Show("删除成功", "提示", MessageBoxButtons.OK);
+                    MessageBox.Show(GetString("editor.main.deletesuccessfully"), GetString("editor.main.tip"), MessageBoxButtons.OK);
                 }
                 else
                 {
-                    MessageBox.Show("删除失败", "提示", MessageBoxButtons.OK);
+                    MessageBox.Show(GetString("editor.main.deletefailed"), GetString("editor.main.tip"), MessageBoxButtons.OK);
                 }
             }
             if (GridView.Rows.Count > 0)
@@ -1006,16 +1029,16 @@ namespace ResxEditor
             if (AddNew() == 1)
             {
                 CellChanged();
-                MessageBox.Show("添加成功", "提示", MessageBoxButtons.OK);
+                MessageBox.Show(GetString("editor.main.addsuccessfully"), GetString("editor.main.tip"), MessageBoxButtons.OK);
             }
             else if (AddNew() == 2)
             {
                 CellChanged();
-                MessageBox.Show("已存在相同Key，已重命名那一行的数据", "提示", MessageBoxButtons.OK);
+                MessageBox.Show(GetString("editor.main.renamesuccessfully.same"), GetString("editor.main.tip"), MessageBoxButtons.OK);
             }
             else
             {
-                MessageBox.Show("添加失败", "提示", MessageBoxButtons.OK);
+                MessageBox.Show(GetString("editor.main.addfailed"), GetString("editor.main.tip"), MessageBoxButtons.OK);
             }
             if (GridView.Rows.Count > 0)
             {
