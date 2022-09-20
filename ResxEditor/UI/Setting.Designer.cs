@@ -85,11 +85,11 @@
             this.ClearTC.Text = "C";
             this.ClearTC.UseVisualStyleBackColor = true;
             // 
-            // loadTC
+            // LoadTC
             // 
             this.LoadTC.Location = new System.Drawing.Point(273, 124);
             this.LoadTC.Margin = new System.Windows.Forms.Padding(4);
-            this.LoadTC.Name = "loadTC";
+            this.LoadTC.Name = "LoadTC";
             this.LoadTC.Size = new System.Drawing.Size(34, 23);
             this.LoadTC.TabIndex = 21;
             this.LoadTC.Text = "L";

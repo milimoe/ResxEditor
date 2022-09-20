@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
+using System.Reflection;
 using System.Resources;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -142,9 +143,9 @@ namespace ResxEditor
 
         private void InitResource()
         {
-            ResXResourceReader ResxReaderEng = new("Eng.resx");
-            ResXResourceReader ResxReaderSC = new("SChinese.resx");
-            ResXResourceReader ResxReaderTC = new("TChinese.resx");
+            ResXResourceReader ResxReaderEng = new("Resx-Eng.Resx");
+            ResXResourceReader ResxReaderSC = new("Resx-SC.resx");
+            ResXResourceReader ResxReaderTC = new("Resx-TC.resx");
             foreach (DictionaryEntry Entry in ResxReaderEng)
             {
                 EngDictionary.Add(Entry.Key.ToString(), Entry.Value.ToString());
@@ -962,6 +963,11 @@ namespace ResxEditor
             {
                 MessageBox.Show("重命名失败", "提示", MessageBoxButtons.OK);
             }
+            if (GridView.Rows.Count > 0)
+            {
+                CurrentRow = GridView.Rows[0];
+                SetCurrentTextBox();
+            }
         }
 
         private void Rename_Click(object sender, EventArgs e)
@@ -982,6 +988,11 @@ namespace ResxEditor
                 {
                     MessageBox.Show("删除失败", "提示", MessageBoxButtons.OK);
                 }
+            }
+            if (GridView.Rows.Count > 0)
+            {
+                CurrentRow = GridView.Rows[0];
+                SetCurrentTextBox();
             }
         }
 
@@ -1005,6 +1016,11 @@ namespace ResxEditor
             else
             {
                 MessageBox.Show("添加失败", "提示", MessageBoxButtons.OK);
+            }
+            if (GridView.Rows.Count > 0)
+            {
+                CurrentRow = GridView.Rows[0];
+                SetCurrentTextBox();
             }
         }
 
